@@ -17,3 +17,28 @@ def intro(request,name,age):
         "age":age
     }
     return JsonResponse(dict1)
+
+
+def myfirstpage(request):
+    return render(request,'index.html')
+def mysecondpage(request):
+    return render(request,'second.html')
+def mythirdpage(request):
+    var="Fruits"
+    greetings="Hii,How are you?"
+    fruits=["mango","banana","......"]
+    a = 1
+    b = 2
+    ans = a>b
+    print(ans)
+    mydictionary={
+        "var":var,
+        "msg":greetings,
+        "myfruits":fruits,
+        "a" :a,
+        "b" :b,
+        "ans" :ans
+    }
+    return render(request,'third.html',context=mydictionary)
+def myimagepage(request):
+    return render(request,'image.html')
