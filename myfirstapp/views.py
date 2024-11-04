@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse,JsonResponse
+from .forms import *
 
 
 # Create your views here.
@@ -42,3 +43,48 @@ def mythirdpage(request):
     return render(request,'third.html',context=mydictionary)
 def myimagepage(request):
     return render(request,'image.html')
+
+def myimagepage2(request):
+    return render(request,'image2.html')
+
+def form(request):
+    return render(request,'form.html')
+
+
+def submitmyform(request):
+    mydict1 = {
+        "var1": request.GET.get('email', 'No email provided'),       # Safely get 'email' key
+        "var2": request.GET.get('password', 'No password provided'), # Safely get 'password' key
+        "method": request.method
+    }
+    return JsonResponse(mydict1)
+def form2(request):
+    
+    if request.method == "POST":
+        form=feedback(request.POST)
+        if form.is_valid():
+            tittle=request.POST["tittle"]
+            subject=request.POST["subject"]
+
+            mydict={
+                "form":feedback()
+            }
+            if tittle!=tittle.upper():
+                mydict["error"]=True
+                mydict["errormsg"]="Tittle should be capital"
+                return render(request,'form2.html',context=mydict)
+            else:        
+                mydict["success"]=True
+                mydict["successmsg"]="Form is Submitted"
+                return render(request,'form2.html',context=mydict)
+        
+        
+     
+    elif request.method == "GET":
+        form = feedback()   
+        mydict={
+            "form": form,
+        }
+        return render(request,'form2.html',context=mydict)
+def error_404_view(request,exception):
+    return render(request,'404.html')

@@ -23,3 +23,5 @@ urlpatterns = [
     path('', include('myfirstapp.urls')),
     # Ensure all paths are correct
 ]
+
+handler404='myfirstapp.views.error_404_view'

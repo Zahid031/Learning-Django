@@ -1,0 +1,17 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}Image Page 2{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <img src="{% static 'Python.png' %}" class="img-fluid" alt="Image">
+        </div>
+        <div class="col-md-3">
+            <img src="{% static 'Django.png' %}" class="img-fluid" alt="Image2">
+        </div>
+    </div>
+</div> 
+{% endblock %}
